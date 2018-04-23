@@ -8,14 +8,12 @@
         <relationship name="states" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="State" inverseName="products" inverseEntity="State" syncable="YES"/>
     </entity>
     <entity name="State" representedClassName="State" syncable="YES" codeGenerationType="class">
-        <attribute name="dolarValue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="fee" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="iof" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="products" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Product" inverseName="states" inverseEntity="Product" syncable="YES"/>
     </entity>
     <elements>
         <element name="Product" positionX="-54" positionY="-9" width="128" height="120"/>
-        <element name="State" positionX="-36" positionY="36" width="128" height="120"/>
+        <element name="State" positionX="-36" positionY="36" width="128" height="90"/>
     </elements>
 </model>

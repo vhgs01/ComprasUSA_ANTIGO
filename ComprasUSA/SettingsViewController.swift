@@ -62,13 +62,14 @@ class SettingsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: title, style: .default, handler: { (action: UIAlertAction) in
             let state = state ?? State(context: self.context)
             state.name = alert.textFields?.first?.text
+            
             if let fee = Double(alert.textFields!.last!.text!) {
                 state.fee = fee
             }
-            state.iof = Double(self.tfIOF!.text!)!
-            state.dolarValue = Double(self.tfDolarValue!.text!)!
-            UserDefaults.standard.set(self.tfIOF.text!, forKey: "dolar")
-            UserDefaults.standard.set(self.tfDolarValue.text!, forKey: "iof")
+//            state.iof = Double(self.tfIOF!.text!)!
+//            state.dolarValue = Double(self.tfDolarValue!.text!)!
+//            UserDefaults.standard.set(self.tfIOF.text!, forKey: "dolar")
+//            UserDefaults.standard.set(self.tfDolarValue.text!, forKey: "iof")
             
             do {
                 try self.context.save()
