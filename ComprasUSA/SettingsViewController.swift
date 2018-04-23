@@ -28,6 +28,10 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tfDolarValue.text = UserDefaults.standard.string(forKey: "dolar")
+        tfIOF.text = UserDefaults.standard.string(forKey: "iof")
+
         loadStates()
     }
     
