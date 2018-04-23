@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		749CB421208B93340022A26C /* ShoppingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CB420208B93340022A26C /* ShoppingTableViewCell.swift */; };
+		749CB423208B95190022A26C /* UIViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CB422208B95190022A26C /* UIViewController+CoreData.swift */; };
+		749CB425208B9C470022A26C /* ShoppingRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CB424208B9C470022A26C /* ShoppingRegisterViewController.swift */; };
+		749CB429208CBF340022A26C /* ShoppingTotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749CB428208CBF340022A26C /* ShoppingTotalViewController.swift */; };
+		749CB42B208CE0960022A26C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 749CB42A208CE0960022A26C /* Settings.bundle */; };
 		74F7A5502089633D00CB4244 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7A54F2089633D00CB4244 /* AppDelegate.swift */; };
-		74F7A5522089633D00CB4244 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7A5512089633D00CB4244 /* ViewController.swift */; };
 		74F7A5552089633D00CB4244 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F7A5532089633D00CB4244 /* Main.storyboard */; };
 		74F7A5582089633D00CB4244 /* ComprasUSA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74F7A5562089633D00CB4244 /* ComprasUSA.xcdatamodeld */; };
 		74F7A55A2089633F00CB4244 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74F7A5592089633F00CB4244 /* Assets.xcassets */; };
 		74F7A55D2089633F00CB4244 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74F7A55B2089633F00CB4244 /* LaunchScreen.storyboard */; };
+		74F7A56520896E3200CB4244 /* ShoppingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7A56420896E3200CB4244 /* ShoppingTableViewController.swift */; };
+		74F7A56720897A1600CB4244 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F7A56620897A1600CB4244 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		749CB420208B93340022A26C /* ShoppingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewCell.swift; sourceTree = "<group>"; };
+		749CB422208B95190022A26C /* UIViewController+CoreData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+CoreData.swift"; sourceTree = "<group>"; };
+		749CB424208B9C470022A26C /* ShoppingRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingRegisterViewController.swift; sourceTree = "<group>"; };
+		749CB428208CBF340022A26C /* ShoppingTotalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTotalViewController.swift; sourceTree = "<group>"; };
+		749CB42A208CE0960022A26C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		74F7A54C2089633D00CB4244 /* ComprasUSA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComprasUSA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74F7A54F2089633D00CB4244 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74F7A5512089633D00CB4244 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74F7A5542089633D00CB4244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74F7A5572089633D00CB4244 /* ComprasUSA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ComprasUSA.xcdatamodel; sourceTree = "<group>"; };
 		74F7A5592089633F00CB4244 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74F7A55C2089633F00CB4244 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74F7A55E2089633F00CB4244 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74F7A56420896E3200CB4244 /* ShoppingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingTableViewController.swift; sourceTree = "<group>"; };
+		74F7A56620897A1600CB4244 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +69,18 @@
 			isa = PBXGroup;
 			children = (
 				74F7A54F2089633D00CB4244 /* AppDelegate.swift */,
-				74F7A5512089633D00CB4244 /* ViewController.swift */,
 				74F7A5532089633D00CB4244 /* Main.storyboard */,
+				749CB422208B95190022A26C /* UIViewController+CoreData.swift */,
+				74F7A56420896E3200CB4244 /* ShoppingTableViewController.swift */,
 				74F7A5592089633F00CB4244 /* Assets.xcassets */,
 				74F7A55B2089633F00CB4244 /* LaunchScreen.storyboard */,
 				74F7A55E2089633F00CB4244 /* Info.plist */,
 				74F7A5562089633D00CB4244 /* ComprasUSA.xcdatamodeld */,
+				74F7A56620897A1600CB4244 /* SettingsViewController.swift */,
+				749CB420208B93340022A26C /* ShoppingTableViewCell.swift */,
+				749CB424208B9C470022A26C /* ShoppingRegisterViewController.swift */,
+				749CB428208CBF340022A26C /* ShoppingTotalViewController.swift */,
+				749CB42A208CE0960022A26C /* Settings.bundle */,
 			);
 			path = ComprasUSA;
 			sourceTree = "<group>";
@@ -125,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749CB42B208CE0960022A26C /* Settings.bundle in Resources */,
 				74F7A55D2089633F00CB4244 /* LaunchScreen.storyboard in Resources */,
 				74F7A55A2089633F00CB4244 /* Assets.xcassets in Resources */,
 				74F7A5552089633D00CB4244 /* Main.storyboard in Resources */,
@@ -138,8 +157,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74F7A5522089633D00CB4244 /* ViewController.swift in Sources */,
+				749CB425208B9C470022A26C /* ShoppingRegisterViewController.swift in Sources */,
+				74F7A56520896E3200CB4244 /* ShoppingTableViewController.swift in Sources */,
 				74F7A5582089633D00CB4244 /* ComprasUSA.xcdatamodeld in Sources */,
+				74F7A56720897A1600CB4244 /* SettingsViewController.swift in Sources */,
+				749CB423208B95190022A26C /* UIViewController+CoreData.swift in Sources */,
+				749CB429208CBF340022A26C /* ShoppingTotalViewController.swift in Sources */,
+				749CB421208B93340022A26C /* ShoppingTableViewCell.swift in Sources */,
 				74F7A5502089633D00CB4244 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
