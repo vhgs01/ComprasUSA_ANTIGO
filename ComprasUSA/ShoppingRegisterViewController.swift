@@ -132,6 +132,7 @@ class ShoppingRegisterViewController: UIViewController {
         }
         do {
             try context.save()
+            self.navigationController?.popViewController(animated: true)
         } catch {
             print(error.localizedDescription)
         }
@@ -143,10 +144,11 @@ class ShoppingRegisterViewController: UIViewController {
 // MARK: - UIImagePickerControllerDelegate
 extension ShoppingRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //O método abaixo nos trará a imagem selecionada pelo usuário em seu tamanho original
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String: AnyObject]?) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return
+        }
         
-        //Iremos usar o código abaixo para criar uma versão reduzida da imagem escolhida pelo usuário
         let smallSize = CGSize(width: 300, height: 280)
         UIGraphicsBeginImageContext(smallSize)
         image.draw(in: CGRect(x: 0, y: 0, width: smallSize.width, height: smallSize.height))

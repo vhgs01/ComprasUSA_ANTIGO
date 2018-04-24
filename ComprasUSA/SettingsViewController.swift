@@ -92,15 +92,6 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let state = dataSource[indexPath.row]
-        let cell = tableView.cellForRow(at: indexPath)!
-        if cell.accessoryType == .none {
-            cell.accessoryType = .checkmark
-            product.addToStates(state)
-        } else {
-            cell.accessoryType = .none
-            product.removeFromStates(state)
-        }
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
@@ -137,8 +128,9 @@ extension SettingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let state = dataSource[indexPath.row]
-        cell.textLabel?.text = state.name! + " " + "\(state.fee)"
-        cell.accessoryType = .none
+        cell.textLabel?.text = state.name!
+        cell.detailTextLabel?.text = "\(state.fee)"
+        cell.detailTextLabel?.textColor = .red
         
         if product != nil {
             if let states = product.states, states.contains(state) {
