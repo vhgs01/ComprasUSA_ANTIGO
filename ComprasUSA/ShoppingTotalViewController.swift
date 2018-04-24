@@ -7,29 +7,29 @@
 //
 
 import UIKit
+import CoreData
 
 class ShoppingTotalViewController: UIViewController {
 
+    var dataSource: [Product] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        loadProducts()
+        //Fazer cálculo com a soma dos produtos de cada estado
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Methods
+    func loadProducts() {
+        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        do {
+            dataSource = try context.fetch(fetchRequest)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
-    */
 
 }
