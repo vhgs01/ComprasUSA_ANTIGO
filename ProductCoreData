@@ -1,0 +1,44 @@
+//
+//  Product+CoreDataProperties.swift
+//  
+//
+//  Created by Fellipe Soares Oliveira on 22/04/2018.
+//
+//  This file was automatically generated and should not be edited.
+//
+
+import Foundation
+import CoreData
+import UIKit
+
+extension Product {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Product> {
+        return NSFetchRequest<Product>(entityName: "Product")
+    }
+
+    @NSManaged public var name: String?
+    @NSManaged public var paymentForm: Bool
+    @NSManaged public var photo: UIImage?
+    @NSManaged public var price: Double
+    @NSManaged public var states: NSSet?
+
+}
+
+// MARK: Generated accessors for categories
+extension Product {
+    
+    @objc(addStatesObject:)
+    @NSManaged public func addToStates(_ value: State)
+    
+    @objc(removeStatesObject:)
+    @NSManaged public func removeFromStates(_ value: State)
+    
+    @objc(addStates:)
+    @NSManaged public func addToStates(_ values: NSSet)
+    
+    @objc(removeStates:)
+    @NSManaged public func removeFromStates(_ values: NSSet)
+    
+}
+
