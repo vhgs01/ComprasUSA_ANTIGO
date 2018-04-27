@@ -18,25 +18,48 @@ class ShoppingRegisterViewController: UIViewController {
     @IBOutlet weak var lbName: UITextField!
     @IBOutlet weak var lbShoppingState: UITextField!
     @IBOutlet weak var btAddUpdate: UIButton!
+    @IBOutlet weak var plusButtonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var btAddState: UIButton!
     
     // MARK: - Properties
     var product: Product!
-    var smallImage: UIImage!
-    var pickerView: UIPickerView!
-    var fetchedResultController: NSFetchedResultsController<State>!
-    var dataSource: [State]?
+    var smallImage                  : UIImage!
+    var pickerView                  : UIPickerView!
+    var fetchedResultController     : NSFetchedResultsController<State>!
+    var dataSource                  : [State]?
+    var backupWidth                 : CGFloat =  0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadStates()
+        config()
         if product != nil {
             lbName.text = product.name
             lbPrice.text = "\(product.price)"
             swPaymentForm.isOn = product.paymentForm
             btAddUpdate.setTitle("Atualizar", for: .normal)
-            ivPhoto.image = product.photo
+            if let image = product.photo as? UIImage {
+                ivPhoto.image = image
+            }
         }
         
+    }
+    func checkState() {
+        if let data = dataSource, data.count <= 0 {
+            btAddState.isHidden         = false
+            lbShoppingState.isHidden    = true
+            plusButtonConstraint.constant = 0.0
+            
+        }
+        else {
+            btAddState.isHidden             = true
+            lbShoppingState.isHidden        = false
+            plusButtonConstraint.constant   = 22
+            
+        }
+    }
+    
+    func config() {
+     
         pickerView = UIPickerView() //Instanciando o UIPickerView
         pickerView.backgroundColor = .white
         pickerView.delegate = self  //Definindo seu delegate
@@ -50,6 +73,16 @@ class ShoppingRegisterViewController: UIViewController {
         
         lbShoppingState.inputAccessoryView = toolbar
         lbShoppingState.inputView = pickerView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let text = lbShoppingState.text?.isEmpty, !text {
+            lbShoppingState.text = ""
+        }
+        
+        loadStates()
+        checkState()
     }
     
     // MARK:  Methods
@@ -79,15 +112,20 @@ class ShoppingRegisterViewController: UIViewController {
     }
     
     @objc func done() {
-        lbShoppingState.text = dataSource![pickerView.selectedRow(inComponent: 0)].name!
+        if let data = dataSource, data.count > 0 {
+            if let name = data[pickerView.selectedRow(inComponent: 0)].name {
+                lbShoppingState.text = name
+            }
+        }
+        
         cancel()
     }
     
     // MARK: - IBActions
-    @IBAction func addPoster(_ sender: UIButton) {
+    @IBAction func addPhoto(_ sender: UIButton) {
         //Criando o alerta que será apresentado ao usuário
         let alert = UIAlertController(title: "Selecionar Imagem", message: "De onde você quer escolher a imagem?", preferredStyle: .actionSheet)
-
+        
         //Verificamos se o device possui câmera. Se sim, adicionamos a devida UIAlertAction
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Câmera", style: .default, handler: { (action: UIAlertAction) in
@@ -95,21 +133,21 @@ class ShoppingRegisterViewController: UIViewController {
             })
             alert.addAction(cameraAction)
         }
-
+        
         //As UIAlertActions de Biblioteca de fotos e Álbum de fotos também são criadas e adicionadas
         let libraryAction = UIAlertAction(title: "Biblioteca de fotos", style: .default) { (action: UIAlertAction) in
             self.selectPicture(sourceType: .photoLibrary)
         }
         alert.addAction(libraryAction)
-
+        
         let photosAction = UIAlertAction(title: "Álbum de fotos", style: .default) { (action: UIAlertAction) in
             self.selectPicture(sourceType: .savedPhotosAlbum)
         }
         alert.addAction(photosAction)
-
+        
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
-
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -120,24 +158,34 @@ class ShoppingRegisterViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addUpdateMovie(_ sender: UIButton) {
+    @IBAction func addUpdateProduct(_ sender: UIButton) {
         if product == nil {
             product = Product(context: context)
         }
-        product.name = lbName.text!
-        product.price = Double(lbPrice.text!)!
-        product.paymentForm = swPaymentForm.isOn
+        
+        if let name = lbName.text, let priceString = lbPrice.text, let price = Double(priceString) {
+            product.name            = name
+            product.price           = price
+            product.paymentForm     = swPaymentForm.isOn
+        }
+        
         if smallImage != nil {
             product.photo = smallImage
         }
+        
         do {
             try context.save()
             self.navigationController?.popViewController(animated: true)
         } catch {
             print(error.localizedDescription)
         }
+        
         close(nil)
     }
+    @IBAction func registerAction(_ sender: Any) {
+        performSegue(withIdentifier: "segueToRegisterState", sender: nil)
+    }
+    
 
 }
 
@@ -157,7 +205,7 @@ extension ShoppingRegisterViewController: UIImagePickerControllerDelegate, UINav
         smallImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        ivPhoto.image = smallImage //Atribuindo a imagem à ivPoster
+        ivPhoto.image = smallImage //Atribuindo a imagem à ivPhoto
         
         //Aqui efetuamos o dismiss na UIImagePickerController, para retornar à tela anterior
         dismiss(animated: true, completion: nil)
@@ -175,8 +223,16 @@ extension ShoppingRegisterViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1    //Usaremos apenas 1 coluna (component) em nosso pickerView
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return dataSource!.count
+        var count = 0
+        
+        if let data = dataSource, data.count > 0 {
+            count = data.count
+        }
+        
+        return count
+        
     }
 }
 

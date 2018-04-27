@@ -12,16 +12,18 @@ import AVFoundation
 
 class ShoppingTableViewController: UITableViewController {
 
-    var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 22))
+    var label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 22)) {
+        didSet {
+            label.text = "Sua lista está vazia!"
+            label.textAlignment = .center
+            label.textColor = .black
+        }
+    }
+    
     var fetchedResultController: NSFetchedResultsController<Product>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        label.text = "Sua lista está vazia!"
-        label.textAlignment = .center
-        label.textColor = .black
-        
         loadProducts()
     }
 
@@ -58,12 +60,16 @@ class ShoppingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell", for: indexPath) as! ShoppingTableViewCell
-        let shopping = fetchedResultController.object(at: indexPath)
-        cell.lbName.text = shopping.name
-        cell.lbPrice.text = "\(shopping.price)"
-        cell.ivPhoto.image = shopping.photo
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell", for: indexPath) as? ShoppingTableViewCell {
+            let shopping = fetchedResultController.object(at: indexPath)
+            cell.lbName.text = shopping.name
+            cell.lbPrice.text = "\(shopping.price)"
+            if let image = shopping.photo as? UIImage {
+                cell.ivPhoto.image = image
+            }
+            return cell
+        }
+        return UITableViewCell()
     }
     
     // Override to support editing the table view.

@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import IQKeyboardManager
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         let appDefaults: [String: Any] = ["iof": "6.3", "dolar": "3.9"]
         UserDefaults.standard.register(defaults: appDefaults)
+        IQKeyboardManager.shared().isEnabled = true
         
         return true
     }
